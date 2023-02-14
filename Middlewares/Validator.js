@@ -8,6 +8,8 @@ exports.registerValidation = [
 
 exports.logginValidation = [
     body('email','Not a valid email').isEmail()
+    // ,
+    // body('password','Password must contain 8 char').isLength({min : 8})
 ]
 
 exports.Validation=(req,res,next)=>{

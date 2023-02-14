@@ -9,7 +9,7 @@ exports.signUp=async(req,res)=>{
         const found = await User.findOne({email})
 
         if (found) {
-            return res.status(400).send({errors : [{Msg : 'Email used'}]})
+            return res.status(400).send({errors : [{msg : 'Email used'}]})
         }
 
         const newUser = new User(req.body)
@@ -28,7 +28,7 @@ exports.signUp=async(req,res)=>{
 
 
     } catch (error) {
-        res.status(500).send({errors : [{Msg :'Could not SignUp'}]})
+        res.status(500).send({errors : [{msg :'Could not SignUp'}]})
     }
 }
 
@@ -40,13 +40,13 @@ exports.signIn=async(req,res)=>{
         const found = await User.findOne({email})
 
         if(!found){
-            return res.status(400).send({errors : [{Msg : 'Email not exist'}]})
+            return res.status(400).send({errors : [{msg : 'Email not exist'}]})
         }
 
         const matched = bcrypt.compareSync(password, found.password)
 
         if(!matched){
-            return res.status(400).send({errors : [{Msg : 'Wrong password'}]})
+            return res.status(400).send({errors : [{msg : 'Bousbi3 not exist'}]})
         }
 
         const payload = {id : found._id}
@@ -54,6 +54,6 @@ exports.signIn=async(req,res)=>{
 
         res.status(200).send({Msg : 'Logged In',found,token})
     } catch (error) {
-        res.status(500).send({errors : [{Msg :'Could not SignIn'}]})
+        res.status(500).send({errors : [{msg :'Could not SignIn'}]})
     }
 }
