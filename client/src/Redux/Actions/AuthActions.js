@@ -1,4 +1,4 @@
-import { CURRENT, FAIL, LOGIN, LOGOUT, REGISTER } from "../ActionTypes/AuthTypes"
+import { CURRENT, FAIL, GETONEUSER, GETUSERS, LOGIN, LOGOUT, REGISTER } from "../ActionTypes/AuthTypes"
 import axios from "axios"
 import { handleError } from "./ErrorAction"
 export const register=(signUser,navigate)=>async(dispatch)=>{
@@ -83,4 +83,70 @@ export const logout=()=>{
             type : LOGOUT
         }
     )
+}
+
+export const getUsers=()=>async(dispatch)=>{
+    try {
+        const res = await axios.get('/api/auth/getAllUsers')
+        dispatch({
+            type : GETUSERS,
+            payload : res.data.users
+
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+export const deleteUser=(id)=>async(dispatch)=>{
+    try {
+        await axios.delete(`/api/auth/deleteUser/${id}`)
+        dispatch(getUsers())
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteProfil=(id,navigate)=>async(dispatch)=>{
+    try {
+        await axios.delete(`/api/auth/deleteUser/${id}`)
+        dispatch(logout())
+        navigate('/')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getOneUser=(id)=>async(dispatch)=>{
+    try {
+        const res = await axios.get(`/api/auth/readUser/${id}`)
+        dispatch({
+            type : GETONEUSER,
+            payload : res.data.oneUser
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateUser=(upUser,id,navigate)=>async(dispatch)=>{
+    try {
+        await axios.put(`/api/auth/updateUser/${id}`,upUser)
+        dispatch(getUsers())
+        navigate('/listusers')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateProfile=(upUser,id,navigate)=>async(dispatch)=>{
+    try {
+        await axios.put(`/api/auth/updateUser/${id}`,upUser)
+        dispatch(getUsers())
+        navigate('/profile')
+    } catch (error) {
+        console.log(error)
+    }
 }

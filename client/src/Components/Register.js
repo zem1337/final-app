@@ -14,9 +14,10 @@ const Register=()=>{
 
     const handleRegister=(a)=>{
       a.preventDefault()
-      dispatch(register({name,email,password},navigate))
+      dispatch(register({name,email,password,role:"user"},navigate))
     }
     return(
+      <div className="fo">
         <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
@@ -38,6 +39,7 @@ const Register=()=>{
           Submit
         </Button>
       </Form>
+      </div>
     )
 }
 

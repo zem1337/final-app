@@ -1,8 +1,10 @@
-import { CURRENT, FAIL, LOGIN, LOGOUT, REGISTER } from "../ActionTypes/AuthTypes"
+import { CURRENT, FAIL, GETONEUSER, GETUSERS, LOGIN, LOGOUT, REGISTER } from "../ActionTypes/AuthTypes"
 
 const initialState={
     user : {},
-    errors : []
+    errors : [],
+    users : [],
+    oneUser : {}
 }
 
 const AuthReducer=(state = initialState,action)=>{
@@ -23,6 +25,9 @@ const AuthReducer=(state = initialState,action)=>{
         localStorage.removeItem("token")
         return {...state, user : null,errors : null}
 
+        case GETUSERS : return {...state,users : action.payload}
+
+        case GETONEUSER : return {...state,oneUser : action.payload}
         default: return state
     }
 }

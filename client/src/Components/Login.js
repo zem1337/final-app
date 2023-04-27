@@ -17,6 +17,7 @@ const Login=()=>{
     }
 
     return(
+      <div className="fo">
         <Form>
         
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -34,6 +35,7 @@ const Login=()=>{
           Submit
         </Button>
       </Form>
+      </div>
     )
 }
 

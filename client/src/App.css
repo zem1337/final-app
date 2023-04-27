@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+.carouselimg{
+  height: 600px;
+  width: 1384px;
+}
+.carlist{
+  align-content: flex-start;
+  flex-wrap: wrap;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.pro{
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.fless{
+  display: flex;
+  justify-content: space-around;
+}
+
+.fo{
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-around;
+}
